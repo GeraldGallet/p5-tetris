@@ -49,6 +49,6 @@ const handleRequest = function (req, res) {
 // Create a server with the handleRequest callback
 let server = http.createServer(handleRequest);
 // Listen on port 8080
-server.listen(process.env.port || 8080);
+server.listen(process.env.PORT || 8080);
 
 log.info('\x1b[42m\x1b[30mServer started on port 8080\x1b[0m');
