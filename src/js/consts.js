@@ -65,7 +65,5 @@ const CYAN = [87, 234, 240];
 const YELLOW = [240, 236, 53];
 const PURPLE = [220, 64, 240];
 
-let nextPieceIndex;
-let currentPiece;
-let board = [];
-let state = PLAYING;
+const STORED_X = GAME_WIDTH - 6 * CELL_SIZE;
+const NEXT_X = GAME_WIDTH * 2 + CELL_SIZE;

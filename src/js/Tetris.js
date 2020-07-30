@@ -19,7 +19,7 @@ class Tetris {
         this.storedPiece = null;
 
         this.score = 0;
-        this.speed = 5;
+        this.speed = 3;
         this.board = null;
     }
 
@@ -45,28 +45,26 @@ class Tetris {
         text(`Score: ${this.score}`, CANVAS_WIDTH / 2, 25);
 
         // Showing next piece
-        const nextX = GAME_WIDTH * 2 + CELL_SIZE;
         textSize(30);
         fill(0, 0, 0);
         textAlign(CENTER, CENTER);
-        text(`Next`, nextX + 2.5 * CELL_SIZE, 25);
+        text(`Next`, NEXT_X + 2.5 * CELL_SIZE, 25);
 
         fill(255, 255, 255);
         strokeWeight(0.5);
-        square(nextX, 50, 5 * CELL_SIZE);
+        square(NEXT_X, 50, 5 * CELL_SIZE);
 
         if (this.nextPiece) this.nextPiece.draw(this.boardX, this.boardY);
 
         // Showing saved piece
-        const savedX = GAME_WIDTH - 6 * CELL_SIZE;
         textSize(30);
         fill(0, 0, 0);
         textAlign(CENTER, CENTER);
-        text('Saved', savedX + 2.5 * CELL_SIZE, 25);
+        text('Stored', STORED_X + 2.5 * CELL_SIZE, 25);
 
         fill(255, 255, 255);
         strokeWeight(0.5);
-        square(savedX, 50, 5 * CELL_SIZE);
+        square(STORED_X, 50, 5 * CELL_SIZE);
 
         if (this.storedPiece) this.storedPiece.draw(this.boardX, this.boardY);
         if (this.nextPiece) this.nextPiece.draw(this.boardX, this.boardY);
