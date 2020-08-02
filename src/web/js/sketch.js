@@ -9,7 +9,7 @@ let speedCursorTicks = 38;
 
 function setup() {
     const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-    canvas.position(((window.innerWidth - CANVAS_WIDTH) / 2), 50);
+    canvas.position(((window.innerWidth - CANVAS_WIDTH) / 2), 0);
     background(220, 220, 220);
     game = new Tetris((CANVAS_WIDTH - GAME_WIDTH) / 2, 50);
     game.draw();
@@ -25,6 +25,18 @@ function setup() {
 function draw() {
     background(220, 220, 220);
     game.draw();
+
+    // Handling paused game
+    if (game.state === PAUSED) {
+        printPauseMenu();
+    }
+
+    if (game.state === LOST) {
+        textSize(68);
+        fill(0, 0, 0);
+        textAlign(CENTER, CENTER);
+        text('YOU\nSUCK', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
+    }
 
     // Speed bar
     textSize(30);
@@ -52,10 +64,8 @@ function draw() {
                 }
             }
         }
-
-
     }
-    // const roundX = STORED_X + (game.speed - 0.5) / ((9.5) / (5 * CELL_SIZE));
+
     fill(200, 200, 200);
     ellipse(speedCursorX, CELL_SIZE * 9, speedCursorDiameter);
 
@@ -86,4 +96,20 @@ function mousePressed() {
 
 function mouseReleased() {
     MOUSE_STATE = null;
+}
+
+function printPauseMenu() {
+    fill(200, 200, 200);
+    rect(CANVAS_WIDTH/6, CANVAS_HEIGHT / 2, CANVAS_WIDTH * 2/3, CANVAS_HEIGHT / 3)
+    textSize(50);
+    fill(0, 0, 0);
+    textAlign(CENTER, CENTER);
+    const toWrite = 'GAME\nPAUSED';
+    text('GAME PAUSED', CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 30);
+
+    textSize(25);
+    textAlign(LEFT, CENTER);
+    text('Pause / Play: Enter', CANVAS_WIDTH/6 + 10, CANVAS_HEIGHT/2 + 60);
+    text('Rotate: Up', CANVAS_WIDTH/6 + 10, CANVAS_HEIGHT/2 + 85);
+    text('Store: Space', CANVAS_WIDTH/6 + 10, CANVAS_HEIGHT/2 + 110);
 }

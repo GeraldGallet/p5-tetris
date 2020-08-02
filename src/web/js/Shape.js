@@ -7,7 +7,6 @@ class Shape {
         this.initGrid(grid);
 
         this.phase = 0;
-        // this.draw();
     }
 
     initGrid(grid) {
@@ -76,33 +75,10 @@ class Shape {
             newMatrix.push(temp);
         }
 
-        if (size === 3) {
-            newMatrix[0][0] = this.grid[2][0];
-            newMatrix[0][1] = this.grid[1][0];
-            newMatrix[0][2] = this.grid[0][0];
-            newMatrix[1][0] = this.grid[2][1];
-            newMatrix[1][1] = this.grid[1][1];
-            newMatrix[1][2] = this.grid[0][1];
-            newMatrix[2][0] = this.grid[2][2];
-            newMatrix[2][1] = this.grid[1][2];
-            newMatrix[2][2] = this.grid[0][2];
-        } else {
-            newMatrix[0][0] = this.grid[3][0];
-            newMatrix[0][1] = this.grid[2][0];
-            newMatrix[0][2] = this.grid[1][0];
-            newMatrix[0][3] = this.grid[0][0];
-            newMatrix[1][0] = this.grid[3][1];
-            newMatrix[1][1] = this.grid[2][1];
-            newMatrix[1][2] = this.grid[1][1];
-            newMatrix[1][3] = this.grid[0][1];
-            newMatrix[2][0] = this.grid[3][2];
-            newMatrix[2][1] = this.grid[2][2];
-            newMatrix[2][2] = this.grid[1][2];
-            newMatrix[2][3] = this.grid[0][2];
-            newMatrix[3][0] = this.grid[3][3];
-            newMatrix[3][1] = this.grid[2][3];
-            newMatrix[3][2] = this.grid[1][3];
-            newMatrix[3][3] = this.grid[0][3];
+        for (let i = 0; i < size; i += 1) {
+            for (let j = 0; j < size; j += 1) {
+                newMatrix[i][j] = this.grid[(size - 1) - j][i];
+            }
         }
 
         this.grid = newMatrix;

@@ -12,7 +12,7 @@ const handleRequest = function (req, res) {
     let pathname = req.url;
 
     // If blank let's ask for index.html
-    if (pathname == '/') {
+    if (pathname === '/') {
         pathname = '/index.html';
     }
 
@@ -32,7 +32,7 @@ const handleRequest = function (req, res) {
     let contentType = typeExt[ext] || 'text/plain';
 
     // Now read and write back the file with the appropriate content type
-    fs.readFile(`${__dirname}/src${pathname}`,
+    fs.readFile(`${__dirname}/src/web${pathname}`,
         function (err, data) {
             if (err) {
                 res.writeHead(500);

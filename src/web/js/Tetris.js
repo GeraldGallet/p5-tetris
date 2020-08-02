@@ -17,10 +17,10 @@ class Tetris {
         this.currentPiece = null;
         this.nextPiece = null;
         this.storedPiece = null;
+        this.predictedPiece = null;
 
         this.score = 0;
         this.speed = 3;
-        this.board = null;
     }
 
     draw() {
@@ -68,27 +68,27 @@ class Tetris {
 
         if (this.storedPiece) this.storedPiece.draw(this.boardX, this.boardY);
         if (this.nextPiece) this.nextPiece.draw(this.boardX, this.boardY);
-        if (this.currentPiece) this.currentPiece.draw(this.boardX, this.boardY);
-
-        if (this.state === PAUSED) {
-            textSize(68);
-            fill(0, 0, 0);
-            textAlign(CENTER, CENTER);
-            const toWrite = 'GAME\nPAUSED';
-            text(toWrite, CANVAS_WIDTH/2, CANVAS_HEIGHT/2 - 100);
-            textSize(30);
-            text('Pause: Enter', CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-            text('Rotate: Up', CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 50);
-            text('Store: Space', CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 100);
+        if (this.currentPiece) { // TODO: optimize this shit
+          this.currentPiece.draw(this.boardX, this.boardY);
+          this.predictedPiece = this.currentPiece.clone();
+          this.predictedPiece.rgb = [230, 230, 230];
+          while (this.canGoDown(this.predictedPiece)) {
+            this.predictedPiece.down();
+          }
+          this.predictedPiece.draw(this.boardX, this.boardY);
         }
+    }
 
-        if (this.state === LOST) {
-            textSize(68);
-            fill(0, 0, 0);
-            textAlign(CENTER, CENTER);
-            const toWrite = 'YOU\nSUCK';
-            text(toWrite, CANVAS_WIDTH/2, CANVAS_HEIGHT/2);
-        }
+    newState(game) {
+        this.state = game.state;
+
+        this.board = game.board;
+        this.currentPiece = game.currentPiece;
+        this.nextPiece = game.nextPiece;
+        this.storedPiece = game.storedPiece;
+
+        this.score = game.score;
+        this.speed = game.speed;
     }
 
     pause() {

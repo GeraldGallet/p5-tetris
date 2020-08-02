@@ -3,6 +3,9 @@ const PLAYING = 0;
 const PAUSED = 1;
 const LOST = 2;
 
+const WINDOW_WIDTH = window.innerWidth;
+const WINDOW_HEIGHT = window.innerHeight;
+
 const BOARD_HEIGHT = 19;
 const BOARD_WIDTH = 10;
 const CELL_SIZE = 35;
@@ -10,6 +13,8 @@ const CELL_SIZE = 35;
 const GAME_WIDTH = BOARD_WIDTH * CELL_SIZE;
 const GAME_HEIGHT = BOARD_HEIGHT * CELL_SIZE;
 
+// const CANVAS_WIDTH = WINDOW_WIDTH;
+// const CANVAS_HEIGHT = WINDOW_HEIGHT;
 const CANVAS_HEIGHT = GAME_HEIGHT + 100;
 const CANVAS_WIDTH = GAME_WIDTH * 3;
 
@@ -59,9 +64,9 @@ const tGrid = [
 
 const ORANGE = [240, 130, 46];
 const BLUE = [53, 58, 240];
-const GREEN = [45, 240, 20];
+const GREEN = [48, 215, 20];
 const RED = [240, 34, 24];
-const CYAN = [87, 234, 240];
+const CYAN = [73, 202, 214];
 const YELLOW = [240, 236, 53];
 const PURPLE = [220, 64, 240];
 

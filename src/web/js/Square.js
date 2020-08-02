@@ -11,7 +11,7 @@ class Square {
 
     draw(x, y) {
         fill(this.rgb[0], this.rgb[1], this.rgb[2]);
-        strokeWeight(1);
+        strokeWeight(1.5);
         stroke(0, 0, 0);
         square((x + this.x * this.width), (y + this.y * this.width), this.width);
     }
